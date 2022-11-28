@@ -13,7 +13,7 @@ var motion = Vector2(0,0)
 export var speed = 80
 onready var animationPlayer = $Animation/AnimationPlayer
 
-func _process(delta):
+func _process(_delta):
 	
 	if UI.buttonPressed(Buttons.defend):
 		action = ActionUtil.defending
