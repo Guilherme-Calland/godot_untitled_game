@@ -14,4 +14,4 @@ func buttonPressed(button):
 	elif button == Buttons.defend:
 		return Input.is_action_pressed("defend")
 	elif button == Buttons.attack:
-		return Input.is_action_pressed("attack")
+		return Input.is_action_just_pressed("attack")

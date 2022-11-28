@@ -26,17 +26,16 @@ func _process(_delta):
 	else:
 		hasAction = false
 		
-		
-	if UI.buttonPressed(Buttons.down) and not hasAction:
+	if UI.buttonPressed(Buttons.down) and not movementBlocked():
 		motion.y = speed/2
-	elif UI.buttonPressed(Buttons.up) and not hasAction:
+	elif UI.buttonPressed(Buttons.up) and not movementBlocked():
 		motion.y = -speed/2
 	else:
 		motion.y = 0
 	
-	if UI.buttonPressed(Buttons.left) and not hasAction:
+	if UI.buttonPressed(Buttons.left) and not movementBlocked():
 		motion.x = -speed
-	elif UI.buttonPressed(Buttons.right) and not hasAction:
+	elif UI.buttonPressed(Buttons.right) and not movementBlocked():
 		motion.x = speed
 	else:
 		motion.x = 0
@@ -60,7 +59,7 @@ func _process(_delta):
 	elif UI.buttonPressed(Buttons.right):
 		direction = Direction.east
 	
-	if not hasAction:
+	if not hasAction and not PlayerAnimations.currentAnimation(direction, ActionUtil.attacking, animationPlayer):
 		if motion.x == 0 && motion.y == 0:
 			action = ActionUtil.idle
 		else:
@@ -69,3 +68,6 @@ func _process(_delta):
 	PlayerAnimations.playAnimation(direction, action, animationPlayer)
 	
 	move_and_slide(motion)
+	
+func movementBlocked():
+	return (hasAction or PlayerAnimations.currentAnimation(direction, ActionUtil.attacking, animationPlayer))

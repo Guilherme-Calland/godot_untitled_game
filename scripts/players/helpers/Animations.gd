@@ -5,6 +5,14 @@ var Direction = EnumUtil.Direction
 var ActionUtil = EnumUtil.Action
 
 func playAnimation(direction, action, animationPlayer):
+	var animationLabel: String = getAnimationLabel(action, direction)
+	animationPlayer.play(animationLabel)
+
+func currentAnimation(direction, action, animationPlayer):
+	var animationLabel: String = getAnimationLabel(action, direction)
+	return animationPlayer.current_animation == animationLabel
+
+func getAnimationLabel(action, direction):
 	var animPart1: String = ''
 	var animPart2: String = ''
 	if action == ActionUtil.idle:
@@ -34,4 +42,4 @@ func playAnimation(direction, action, animationPlayer):
 		animPart2 = 'south_west'
 	
 	var animationLabel : String = animPart1 + animPart2
-	animationPlayer.play(animationLabel)
+	return animationLabel
