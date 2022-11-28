@@ -1,11 +1,17 @@
 extends KinematicBody2D
 
+var UI = UserInput.new()
+var Enum = Enums.new()
+var Buttons = Enum.Buttons
+var Direction = Enum.Direction
+var PhysicsStatus = Enum.PhysicsStatus
+var PlayerAnimations = Animations.new()
+
+var direction = Direction.south
+var physicsStatus = PhysicsStatus.idle
 var motion = Vector2(0,0)
 export var speed = 80
 onready var animationPlayer = $Animation/AnimationPlayer
-
-var UI = UserInput.new()
-var Buttons = Enums.new().Buttons
 
 func _process(delta):
 	if UI.buttonPressed(Buttons.down):
@@ -24,22 +30,28 @@ func _process(delta):
 	
 	if UI.buttonPressed(Buttons.down):
 		if UI.buttonPressed(Buttons.left):
-			animationPlayer.play("running_south_west")
+			direction = Direction.southWest
 		elif UI.buttonPressed(Buttons.right):
-			animationPlayer.play("running_south_east")
+			direction = Direction.southEast
 		else:
-			animationPlayer.play("running_south")
+			direction = Direction.south
 	elif UI.buttonPressed(Buttons.up):
 		if UI.buttonPressed(Buttons.left):
-			animationPlayer.play("running_north_west")
+			direction = Direction.northWest
 		elif UI.buttonPressed(Buttons.right):
-			animationPlayer.play("running_north_east")
+			direction = Direction.northEast
 		else:
-			animationPlayer.play("running_north")
+			direction = Direction.north
 	elif UI.buttonPressed(Buttons.left):
-		animationPlayer.play("running_west")
+		direction = Direction.west
 	elif UI.buttonPressed(Buttons.right):
-		animationPlayer.play("running_east")
+		direction = Direction.east
 	
+	if motion.x == 0 && motion.y == 0:
+		physicsStatus = PhysicsStatus.idle
+	else:
+		physicsStatus = PhysicsStatus.running
+	
+	PlayerAnimations.playAnimation(direction, physicsStatus, animationPlayer)
 	
 	move_and_slide(motion)

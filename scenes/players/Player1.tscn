@@ -1,7 +1,7 @@
 [gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://graphics/player1/idle_sprite_sheet/south.png" type="Texture" id=1]
-[ext_resource path="res://scripts/players/player1/Player1.gd" type="Script" id=2]
+[ext_resource path="res://scripts/players/Player1.gd" type="Script" id=2]
 [ext_resource path="res://graphics/player1/idle_sprite_sheet/north.png" type="Texture" id=3]
 [ext_resource path="res://graphics/player1/idle_sprite_sheet/south_west.png" type="Texture" id=4]
 [ext_resource path="res://graphics/player1/idle_sprite_sheet/north_west.png" type="Texture" id=5]
