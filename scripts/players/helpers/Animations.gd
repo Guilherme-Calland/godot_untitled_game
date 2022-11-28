@@ -13,6 +13,8 @@ func playAnimation(direction, action, animationPlayer):
 		animPart1 = 'running_'
 	elif action == ActionUtil.defending:
 		animPart1 = 'defending_'
+	elif action == ActionUtil.attacking:
+		animPart1 = 'attacking_'
 	
 	if direction == Direction.south:
 		animPart2 = 'south'

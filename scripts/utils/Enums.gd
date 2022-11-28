@@ -5,7 +5,8 @@ enum Buttons {
 	right,
 	up,
 	left,
-	defend
+	defend,
+	attack
 }
 
 enum Direction {
@@ -22,5 +23,6 @@ enum Direction {
 enum Action {
 	idle,
 	running,
-	defending
+	defending,
+	attacking
 }

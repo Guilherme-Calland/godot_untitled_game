@@ -13,23 +13,30 @@ var motion = Vector2(0,0)
 export var speed = 80
 onready var animationPlayer = $Animation/AnimationPlayer
 
+var hasAction : bool = false
+
 func _process(_delta):
 	
 	if UI.buttonPressed(Buttons.defend):
 		action = ActionUtil.defending
+		hasAction = true
+	elif UI.buttonPressed(Buttons.attack):
+		action = ActionUtil.attacking
+		hasAction = true
 	else:
-		action = ActionUtil.idle
+		hasAction = false
 		
-	if UI.buttonPressed(Buttons.down) and not action == ActionUtil.defending:
+		
+	if UI.buttonPressed(Buttons.down) and not hasAction:
 		motion.y = speed/2
-	elif UI.buttonPressed(Buttons.up) and not action == ActionUtil.defending:
+	elif UI.buttonPressed(Buttons.up) and not hasAction:
 		motion.y = -speed/2
 	else:
 		motion.y = 0
 	
-	if UI.buttonPressed(Buttons.left) and not action == ActionUtil.defending:
+	if UI.buttonPressed(Buttons.left) and not hasAction:
 		motion.x = -speed
-	elif UI.buttonPressed(Buttons.right) and not action ==ActionUtil.defending:
+	elif UI.buttonPressed(Buttons.right) and not hasAction:
 		motion.x = speed
 	else:
 		motion.x = 0
@@ -53,7 +60,7 @@ func _process(_delta):
 	elif UI.buttonPressed(Buttons.right):
 		direction = Direction.east
 	
-	if action != ActionUtil.defending:
+	if not hasAction:
 		if motion.x == 0 && motion.y == 0:
 			action = ActionUtil.idle
 		else:
