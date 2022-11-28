@@ -24,6 +24,22 @@ func _process(delta):
 	
 	if UI.buttonPressed(Buttons.down):
 		if UI.buttonPressed(Buttons.left):
-			pass
+			animationPlayer.play("idle_south_west")
+		elif UI.buttonPressed(Buttons.right):
+			animationPlayer.play("idle_south_east")
+		else:
+			animationPlayer.play("idle_south")
+	elif UI.buttonPressed(Buttons.up):
+		if UI.buttonPressed(Buttons.left):
+			animationPlayer.play("idle_north_west")
+		elif UI.buttonPressed(Buttons.right):
+			animationPlayer.play("idle_north_east")
+		else:
+			animationPlayer.play("idle_north")
+	elif UI.buttonPressed(Buttons.left):
+		animationPlayer.play("idle_west")
+	elif UI.buttonPressed(Buttons.right):
+		animationPlayer.play("idle_east")
+	
 	
 	move_and_slide(motion)
