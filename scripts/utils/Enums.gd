@@ -4,7 +4,8 @@ enum Buttons {
 	down,
 	right,
 	up,
-	left
+	left,
+	defend
 }
 
 enum Direction {
@@ -18,7 +19,8 @@ enum Direction {
 	southWest
 }
 
-enum PhysicsStatus {
+enum Action {
 	idle,
-	running
+	running,
+	defending
 }

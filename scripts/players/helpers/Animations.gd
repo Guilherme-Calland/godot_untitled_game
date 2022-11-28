@@ -2,15 +2,17 @@ class_name Animations
 
 var EnumUtil : Enums = Enums.new()
 var Direction = EnumUtil.Direction
-var PhysicsStatus = EnumUtil.PhysicsStatus
+var ActionUtil = EnumUtil.Action
 
-func playAnimation(direction, physicsStatus, animationPlayer):
+func playAnimation(direction, action, animationPlayer):
 	var animPart1: String = ''
 	var animPart2: String = ''
-	if physicsStatus == PhysicsStatus.idle:
+	if action == ActionUtil.idle:
 		animPart1 = 'idle_'
-	elif physicsStatus == PhysicsStatus.running:
+	elif action == ActionUtil.running:
 		animPart1 = 'running_'
+	elif action == ActionUtil.defending:
+		animPart1 = 'defending_'
 	
 	if direction == Direction.south:
 		animPart2 = 'south'
